@@ -7,7 +7,9 @@ Interview the user relentlessly until you reach a shared understanding. Map this
 
 Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled: the questions you can ask _now_ without guessing at answers you haven't heard yet. Ask the whole frontier in one round: number each question and give your recommended answer. Then wait for the user's answers before the next round.
 
-Format a round like so:
+Ask each round through the `AskUserQuestion` tool so the user can select answers instead of typing them. One tool call holds up to 4 questions; a bigger frontier takes several calls in the same round. Per question: a short `header`, 2-4 mutually exclusive options with your recommendation first and suffixed "(Recommended)", and a one-line `description` per option carrying the trade-off. Put any longer context in plain text just before the call. Don't add an "Other" option; the tool provides it. A question with no natural discrete options (e.g. "what should this be called?") still goes through the tool: offer your best 2-3 candidates.
+
+Only when `AskUserQuestion` isn't available, format a round as text like so:
 
 ```
 ❓ **Q1** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
